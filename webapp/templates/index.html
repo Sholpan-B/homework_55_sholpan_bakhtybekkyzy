@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block menu %}
+    <a href="{% url 'task_add' %}">Добавить задачу</a>
+{% endblock %}
+{% block content %}
+    <h1>Список задач</h1>
+    <table>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    {%  for task in tasks %}
+    <tr>
+        <td>{{ task.title }}</td>
+        <td><a href="{% url 'task_detail' task.id %}">Посмотреть</a></td>
+        <td><a href="{% url 'task_update' task.id %}">Изменить</a></td>
+        <td><a href="{% url 'task_delete' task.id %}">Удалить</a></td>
+    </tr>
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+</table>
+<br><br>
+<a href="{% url 'task_add' %}">Добавить задачу</a>
+
+{% endblock content %}
