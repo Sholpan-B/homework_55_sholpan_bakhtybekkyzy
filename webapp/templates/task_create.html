@@ -1,47 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Task Create{% endblock %}
 {% block content %}
-    <h1>Форма добавления задачи</h1>
+    <h1>New Task</h1>
 
-     <form action="{% url 'task_add' %}" method="post">
-      {% csrf_token %}
-      <div class="row mb-3">
-        <label for="title" class="col-sm-2 col-form-label">Заголовок</label>
-        <div class="col-sm-10">
-          <input id="title" name ="title" type="text" class="form-control" required>
-        </div>
-      </div>
-          <div class="row mb-3">
-        <label for="description" class="col-sm-2 col-form-label">Описание</label>
-        <div class="col-sm-10">
-          <input id="description" name ="description" type="text" class="form-control" required>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="details" class="col-sm-2 col-form-label">Подробное описание</label>
-        <div class="col-sm-10">
-          <textarea class="form-control" id="details" rows="10" name ="details"></textarea>
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="deadline" class="col-sm-2 col-form-label">Выполнить до</label>
-        <div class="col-sm-10">
-          <input id="deadline" name ="deadline" type="date" class="form-control" value="">
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="status" class="col-sm-2 col-form-label">Status</label>
-        <div class="col-sm-10">
-          <select id="status" name="status" class="form-select">
-            <option value="Новая">Новая</option>
-            <option value="В процессе">В процессе</option>
-            <option value="Сделано">Сделано</option>
-          </select>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Сохранить</button>
-    </form>
- <a href="{% url 'index' %}">Назад</a>
-
+<div class="form">
+  <form action="{% url 'task_add' %}" method="post">
+    {% include 'partial/task_form.html' with button_text='Создать' %}
+  </form>
+</div>
 {% endblock %}
-
